@@ -19,7 +19,7 @@ nodes = merge(nodes, values, by.x='id', by.y='from')
 nodes$shape = c('image')
 edges = df %>% select(from, to)
 
-visNetwork(nodes, edges, main='Conexiones en Mr Robot según el FBI', submain='#30diasdegraficos, una iniciativa de @R4DS_es, @karbartolome') %>% 
+graph=visNetwork(nodes, edges, main='Conexiones en Mr Robot según el FBI', submain='#30diasdegraficos, una iniciativa de @R4DS_es, @karbartolome') %>% 
   visOptions(highlightNearest = TRUE, 
              nodesIdSelection = FALSE, 
              width = 1000, height = 600) %>% 
@@ -28,3 +28,6 @@ visNetwork(nodes, edges, main='Conexiones en Mr Robot según el FBI', submain='#
            smooth=list('type'='cubicBezier')) %>% 
   visNodes(font=list('background'='white'))
 
+graph
+
+visSave(graph, 'mrrobot_network.html', selfcontained = TRUE, background = "white")
